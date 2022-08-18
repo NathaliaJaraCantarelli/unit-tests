@@ -34,8 +34,64 @@
   arrayGenerator('entries', { sum: 3, mult: 2, div: 0, sub: -1 }) // [ [ 'sum', 3 ], [ 'mult', 2 ], [ 'div', 0 ], [ 'sub', -1 ] ]
 */
 
-const calculator = (number1, number2) => {};
+const calculator = (number1, number2) => {
+  const operacoes = {
+    sum: Math.trunc(number1 + number2),
+    mult: Math.trunc(number1 * number2),
+    div: Math.trunc(number1 / number2),
+    sub: Math.trunc(number1 - number2),
+  };
+  return operacoes;
+};
 
-const arrayGenerator = (type, object) => {};
+const chaves = (objeto) => {
+  const arrayObjeto = [];
+  for (let keys in objeto) {
+    if (objeto !== null) {
+      arrayObjeto.push(keys);
+    }
+  }
+  return arrayObjeto;
+};
+
+const valores = (objeto) => {
+  const arrayValores = [];
+  for (let keys in objeto) {
+    if (objeto !== null) {
+      let valor = objeto[keys];
+      arrayValores.push(valor);
+    }
+  }
+  return arrayValores;
+};
+
+const tudo = (objeto) => {
+  let arrayTudo = [];
+  let chavesTudo = chaves(objeto);
+  let valoresTudo = valores(objeto);
+  let contador = 0;
+  for (let keys in objeto) {
+    if (objeto !== null) {
+      let parte = [];
+      parte.push(chavesTudo[contador]);
+      parte.push(valoresTudo[contador]);
+      contador += 1;
+      arrayTudo.push(parte);
+    }
+  }
+  return arrayTudo;
+};
+
+const arrayGenerator = (type, object) => {
+  let arrayCriado = [];
+  if (type === 'keys') {
+    arrayCriado = chaves(object);
+  } else if (type === 'values') {
+    arrayCriado = valores(object);
+  } else if (type === 'entries') {
+    arrayCriado = tudo(object);
+  } 
+  return arrayCriado;
+};
 
 module.exports = { calculator, arrayGenerator };
