@@ -11,6 +11,28 @@
     - average([1, '2']) // Retorno: undefined;
 */
 
-const average = () => {};
+function verifica(tamanhoArray, resultado, media) {
+  if (tamanhoArray === 0) {
+    resultado = undefined;
+  } else if (resultado === '') {
+    resultado = Math.round(media / tamanhoArray);
+  }
+  return resultado;
+}
+
+const average = (arrayInput) => {
+  let retorno = '';
+  let media = 0;
+  for (let index = 0; index < arrayInput.length; index += 1) {
+    if (typeof (arrayInput[index]) !== 'number') {
+      retorno = undefined;
+      break;
+    } else {
+      media += arrayInput[index];
+    }
+  }
+  const resultadoFinal = verifica(arrayInput.length, retorno, media);
+  return resultadoFinal;
+};
 
 module.exports = average;
